@@ -71,7 +71,7 @@ ${form.name}`;
       window.location.href = mailtoUrl;
 
       // Method 3: Still send to WhatsApp as backup
-      const phoneNumber = "2349130199317";
+      const phoneNumber = "+2349130199317";
       const whatsappMessage = `📌 New Nail Salon Booking:
 - Name: ${form.name}
 - Email: ${form.email}
