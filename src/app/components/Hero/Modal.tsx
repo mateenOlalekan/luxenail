@@ -7,6 +7,7 @@ export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
+    recipient: "", // 👈 add this so you can send to any number
     name: "",
     email: "",
     phone: "",
@@ -31,10 +32,13 @@ export default function BookingModal() {
     setIsSubmitting(true);
 
     try {
-      const phoneNumber = "9130199317"; // Replace with your WhatsApp number
+      if (!form.recipient) {
+        alert("Please enter a recipient WhatsApp number (with country code).");
+        return;
+      }
 
       const url =
-        `https://wa.me/${phoneNumber}?text=` +
+        `https://wa.me/${form.recipient}?text=` +
         `*Name:* ${form.name}%0a` +
         `*Email:* ${form.email}%0a` +
         `*Phone:* ${form.phone}%0a` +
@@ -46,10 +50,11 @@ export default function BookingModal() {
 
       window.open(url, "_blank")?.focus();
 
-      alert("Booking request sent via WhatsApp ✅");
+      alert("Booking request opened in WhatsApp ✅");
 
       // Reset form
       setForm({
+        recipient: "",
         name: "",
         email: "",
         phone: "",
@@ -98,11 +103,33 @@ export default function BookingModal() {
               Book Your Appointment
             </h2>
             <p className="text-sm text-gray-500 mb-6">
-              Fill in your details and send your booking via WhatsApp.
+              Fill in your details and choose the WhatsApp number to send your
+              booking.
             </p>
 
             {/* Booking Form */}
             <form onSubmit={sendWhatsapp} className="space-y-4">
+              {/* Recipient Number */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Recipient WhatsApp Number
+                </label>
+                <input
+                  name="recipient"
+                  type="tel"
+                  value={form.recipient}
+                  onChange={handleChange}
+                  placeholder="e.g. 2348012345678"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
+                  required
+                  disabled={isSubmitting}
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Enter in international format (e.g., 234 for Nigeria, 1 for
+                  USA).
+                </p>
+              </div>
+
               {/* Name */}
               <div>
                 <label className="block text-sm font-medium mb-1">
@@ -140,7 +167,7 @@ export default function BookingModal() {
               {/* Phone */}
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Phone Number
+                  Your Phone Number
                 </label>
                 <input
                   name="phone"
