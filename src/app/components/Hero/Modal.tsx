@@ -26,32 +26,26 @@ export default function BookingModal() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const sendWhatsapp = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // WhatsApp integration only
-      const phoneNumber = "+2349130199317"; // Your WhatsApp number
-      const whatsappMessage = `📌 New Nail Salon Booking:
+      const phoneNumber = "+2439130199317"; // Replace with your WhatsApp number
 
-- Name: ${form.name}
-- Email: ${form.email}
-- Phone: ${form.phone}
-- Service: ${form.service}
-- Date: ${form.date}
-- Time: ${form.time}
-- Notes: ${form.notes}
+      const url =
+        `https://wa.me/${phoneNumber}?text=` +
+        `*Name:* ${form.name}%0a` +
+        `*Email:* ${form.email}%0a` +
+        `*Phone:* ${form.phone}%0a` +
+        `*Service:* ${form.service}%0a` +
+        `*Date:* ${form.date}%0a` +
+        `*Time:* ${form.time}%0a` +
+        `*Notes:* ${form.notes}%0a%0a` +
+        `This is an example of sending form data to WhatsApp`;
 
-Please confirm this appointment.`;
+      window.open(url, "_blank")?.focus();
 
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
-
-      window.open(whatsappUrl, "_blank");
-
-      // Success message
       alert("Booking request sent via WhatsApp ✅");
 
       // Reset form
@@ -76,7 +70,7 @@ Please confirm this appointment.`;
 
   return (
     <>
-      {/* Open Modal Button */}
+      {/* Button to open modal */}
       <button
         onClick={toggleModal}
         className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:via-rose-600 hover:to-pink-700 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-pink-400/50 flex items-center space-x-2 relative overflow-hidden group transform hover:scale-105"
@@ -90,7 +84,7 @@ Please confirm this appointment.`;
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 relative animate-fadeIn">
-            {/* Close */}
+            {/* Close button */}
             <button
               onClick={toggleModal}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
@@ -107,8 +101,8 @@ Please confirm this appointment.`;
               Fill in your details and send your booking via WhatsApp.
             </p>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Booking Form */}
+            <form onSubmit={sendWhatsapp} className="space-y-4">
               {/* Name */}
               <div>
                 <label className="block text-sm font-medium mb-1">
