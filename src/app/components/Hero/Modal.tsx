@@ -31,28 +31,9 @@ export default function BookingModal() {
     setIsSubmitting(true);
 
     try {
-      // Method 1: Using EmailJS (requires setup)
-      // Uncomment and configure EmailJS for automatic email sending
-      /*
-      await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        {
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          service: form.service,
-          date: form.date,
-          time: form.time,
-          notes: form.notes,
-        },
-        'YOUR_USER_ID'
-      );
-      */
-
-      // Method 2: mailto (opens email client)
-      const subject = `New Nail Salon Booking - ${form.name}`;
-      const body = `📌 New Nail Salon Booking:
+      // WhatsApp integration only
+      const phoneNumber = "+2349130199317"; // Your WhatsApp number
+      const whatsappMessage = `📌 New Nail Salon Booking:
 
 - Name: ${form.name}
 - Email: ${form.email}
@@ -62,35 +43,17 @@ export default function BookingModal() {
 - Time: ${form.time}
 - Notes: ${form.notes}
 
-Please confirm this appointment.
+Please confirm this appointment.`;
 
-Best regards,
-${form.name}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
 
-      const mailtoUrl = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-
-      // Method 3: Still send to WhatsApp as backup
-      const phoneNumber = "+2349130199317";
-      const whatsappMessage = `📌 New Nail Salon Booking:
-- Name: ${form.name}
-- Email: ${form.email}
-- Phone: ${form.phone}
-- Service: ${form.service}
-- Date: ${form.date}
-- Time: ${form.time}
-- Notes: ${form.notes}`;
-
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-      
-      // Open WhatsApp in new tab after a delay
-      setTimeout(() => {
-        window.open(whatsappUrl, "_blank");
-      }, 1000);
+      window.open(whatsappUrl, "_blank");
 
       // Success message
-      alert("Booking request sent! Please check your email client and WhatsApp.");
-      
+      alert("Booking request sent via WhatsApp ✅");
+
       // Reset form
       setForm({
         name: "",
@@ -101,9 +64,8 @@ ${form.name}`;
         time: "",
         notes: "",
       });
-      
-      setIsOpen(false);
 
+      setIsOpen(false);
     } catch (error) {
       console.error("Error sending booking:", error);
       alert("There was an error sending your booking. Please try again.");
@@ -114,15 +76,13 @@ ${form.name}`;
 
   return (
     <>
-      {/* Button */}
+      {/* Open Modal Button */}
       <button
         onClick={toggleModal}
         className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:via-rose-600 hover:to-pink-700 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-pink-400/50 flex items-center space-x-2 relative overflow-hidden group transform hover:scale-105"
       >
         <Calendar className="w-4 h-4 relative z-10" />
         <span className="relative z-10">Book Appointment</span>
-
-        {/* Shine effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
       </button>
 
@@ -130,7 +90,7 @@ ${form.name}`;
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 relative animate-fadeIn">
-            {/* Close button */}
+            {/* Close */}
             <button
               onClick={toggleModal}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
@@ -144,10 +104,10 @@ ${form.name}`;
               Book Your Appointment
             </h2>
             <p className="text-sm text-gray-500 mb-6">
-              Please fill in your details to book a nail salon appointment.
+              Fill in your details and send your booking via WhatsApp.
             </p>
 
-            {/* Booking Form */}
+            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
@@ -278,15 +238,10 @@ ${form.name}`;
                     <span>Sending...</span>
                   </>
                 ) : (
-                  "Confirm Booking"
+                  "Send via WhatsApp"
                 )}
               </button>
             </form>
-
-            {/* Info */}
-            <div className="mt-4 text-xs text-gray-500 text-center">
-              This will open your email client and WhatsApp for confirmation
-            </div>
           </div>
         </div>
       )}
