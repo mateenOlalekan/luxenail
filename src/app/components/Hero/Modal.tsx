@@ -5,6 +5,7 @@ import { Calendar, X } from "lucide-react";
 
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -25,12 +26,53 @@ export default function BookingModal() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    // ✅ use full international format (example: Nigeria +234)
-    const phoneNumber = "2349130199317"; // replace with your real WhatsApp #
-    const message = `📌 New Nail Salon Booking:
+    try {
+      // Method 1: Using EmailJS (requires setup)
+      // Uncomment and configure EmailJS for automatic email sending
+      /*
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          date: form.date,
+          time: form.time,
+          notes: form.notes,
+        },
+        'YOUR_USER_ID'
+      );
+      */
+
+      // Method 2: mailto (opens email client)
+      const subject = `New Nail Salon Booking - ${form.name}`;
+      const body = `📌 New Nail Salon Booking:
+
+- Name: ${form.name}
+- Email: ${form.email}
+- Phone: ${form.phone}
+- Service: ${form.service}
+- Date: ${form.date}
+- Time: ${form.time}
+- Notes: ${form.notes}
+
+Please confirm this appointment.
+
+Best regards,
+${form.name}`;
+
+      const mailtoUrl = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+
+      // Method 3: Still send to WhatsApp as backup
+      const phoneNumber = "2349130199317";
+      const whatsappMessage = `📌 New Nail Salon Booking:
 - Name: ${form.name}
 - Email: ${form.email}
 - Phone: ${form.phone}
@@ -39,12 +81,35 @@ export default function BookingModal() {
 - Time: ${form.time}
 - Notes: ${form.notes}`;
 
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      
+      // Open WhatsApp in new tab after a delay
+      setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
+      }, 1000);
 
-    window.open(url, "_blank"); // Open WhatsApp
-    setIsOpen(false); // close modal after submit
+      // Success message
+      alert("Booking request sent! Please check your email client and WhatsApp.");
+      
+      // Reset form
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        date: "",
+        time: "",
+        notes: "",
+      });
+      
+      setIsOpen(false);
+
+    } catch (error) {
+      console.error("Error sending booking:", error);
+      alert("There was an error sending your booking. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,6 +134,7 @@ export default function BookingModal() {
             <button
               onClick={toggleModal}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+              disabled={isSubmitting}
             >
               <X className="w-5 h-5" />
             </button>
@@ -96,6 +162,7 @@ export default function BookingModal() {
                   placeholder="Enter your full name"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -112,6 +179,7 @@ export default function BookingModal() {
                   placeholder="you@example.com"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -128,6 +196,7 @@ export default function BookingModal() {
                   placeholder="+234 812 345 6789"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -142,6 +211,7 @@ export default function BookingModal() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 >
                   <option value="">Select a service</option>
                   <option>Classic Manicure</option>
@@ -162,6 +232,7 @@ export default function BookingModal() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -175,6 +246,7 @@ export default function BookingModal() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -190,17 +262,31 @@ export default function BookingModal() {
                   placeholder="Any special requests?"
                   rows={3}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
+                  disabled={isSubmitting}
                 />
               </div>
 
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:via-rose-600 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-pink-400/50 transition-all"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:via-rose-600 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-pink-400/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
-                Confirm Booking via WhatsApp
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  "Confirm Booking"
+                )}
               </button>
             </form>
+
+            {/* Info */}
+            <div className="mt-4 text-xs text-gray-500 text-center">
+              This will open your email client and WhatsApp for confirmation
+            </div>
           </div>
         </div>
       )}
