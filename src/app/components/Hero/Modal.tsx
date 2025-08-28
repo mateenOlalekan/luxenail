@@ -31,7 +31,7 @@ export default function BookingModal() {
     setIsSubmitting(true);
 
     try {
-      const phoneNumber = "+2439130199317"; // Replace with your WhatsApp number
+      const phoneNumber = "9130199317"; // Replace with your WhatsApp number
 
       const url =
         `https://wa.me/${phoneNumber}?text=` +
