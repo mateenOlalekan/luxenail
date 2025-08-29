@@ -84,7 +84,7 @@ const PremiumHero = () => {
   ];
 
   return (
-    <section id="hero" className="relative h-fit   overflow-hidden py-14">
+    <section id="home" className="relative h-fit   overflow-hidden py-14">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50/80"></div>
@@ -158,10 +158,10 @@ const PremiumHero = () => {
                 Book Your Session
               </button>
               
-              <Link href="/services" className="border-2 border-pink-300 bg-white/90 text-pink-700 px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-md flex items-center justify-center">
+              <a href="/services" className="border-2 border-pink-300 bg-white/90 text-pink-700 px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-md flex items-center justify-center">
                 <Palette className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                 Explore Services
-              </Link>
+              </a>
             </div>
           </div>
 

@@ -1,8 +1,6 @@
 // components/Navbar.tsx
 'use client';
-
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { 
   Phone, 
   Calendar, 
@@ -65,54 +63,64 @@ export default function Navbar() {
     }
   };
 
+  // Function to scroll to a section
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   const services: Service[] = [
     { 
       name: 'Luxury Manicures', 
-      href: '/services/manicures', 
+      href: 'services', 
       icon: <Sparkles size={16} />,
       desc: 'Premium nail care & polish',
-      price: 'From $45'
+      price: 'From ₦ 45,000'
     },
     { 
       name: 'Signature Pedicures', 
-      href: '/services/pedicures', 
+      href: 'services', 
       icon: <Heart size={16} />,
       desc: 'Relaxing foot treatments',
-      price: 'From $65'
+      price: 'From ₦ 65,000'
     },
     { 
       name: 'Nail Art Design', 
-      href: '/services/nail-art', 
+      href: 'services', 
       icon: <Palette size={16} />,
       desc: 'Custom artistic designs',
-      price: 'From $25'
+      price: 'From ₦ 25,000'
     },
     { 
       name: 'Gel Extensions', 
-      href: '/services/gel-extensions', 
+      href: 'services', 
       icon: <Crown size={16} />,
       desc: 'Length & strength enhancement',
-      price: 'From $85'
+      price: 'From ₦ 85,000'
     },
     { 
       name: 'Nail Repair', 
-      href: '/services/nail-repair', 
+      href: 'services', 
       icon: <Scissors size={16} />,
       desc: 'Professional restoration',
-      price: 'From $35'
+      price: 'From ₦ 35,000'
     },
   ];
 
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/' },
+    { name: 'Home', href: 'home' },
     { 
       name: 'Services', 
-      href: '/services',
+      href: 'services',
       dropdown: services
     },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Packages', href: '/packages' },
-    { name: 'Testimonial', href: '/testimonial' },
+    { name: 'Gallery', href: 'gallery' },
+    { name: 'Packages', href: 'packages' },
+    { name: 'Testimonial', href: 'testimonial' },
   ];
 
   return (
@@ -124,7 +132,10 @@ export default function Navbar() {
       } py-3`}>
         <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="#home" className="flex items-center space-x-3 group">
+          <button 
+            onClick={() => scrollToSection('home')} 
+            className="flex items-center space-x-3 group"
+          >
             <div className="relative flex items-center justify-center">
               <div className="w-14 h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10 bg-gradient-to-br from-pink-400 via-rose-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-pink-400/40 transition-all duration-500 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -148,7 +159,7 @@ export default function Navbar() {
                 Premium Salon & Spa
               </span>
             </div>
-          </a>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
@@ -176,11 +187,10 @@ export default function Navbar() {
                       >
                         <div className="p-2">
                           {link.dropdown.map((item, index) => (
-                            <a
+                            <button
                               key={item.name}
-                              href={`#${item.href}`}
-                              className="flex items-center justify-between p-4 text-sm rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 group/item"
-                              onClick={() => setActiveDropdown(null)}
+                              onClick={() => scrollToSection(item.href)}
+                              className="flex items-center justify-between p-4 text-sm rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 group/item w-full text-left"
                             >
                               <div className="flex items-center">
                                 <span className="mr-4 text-pink-500 bg-pink-100 p-2 rounded-lg group-hover/item:bg-pink-200 transition-colors">
@@ -198,22 +208,22 @@ export default function Navbar() {
                               <div className="text-pink-600 font-semibold text-xs">
                                 {item.price}
                               </div>
-                            </a>
+                            </button>
                           ))}
                         </div>
                       </div>
                     )}
                   </>
                 ) : (
-                  <a
-                    href={link.href}
+                  <button
+                    onClick={() => scrollToSection(link.href)}
                     className={`px-5 py-3 rounded-xl text-sm font-medium transition-all relative overflow-hidden group ${
                       isScrolled ? 'text-gray-700' : 'text-gray-800'
                     } hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50`}
                   >
                     <span className="relative z-10">{link.name}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-100/50 to-pink-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </a>
+                  </button>
                 )}
               </div>
             ))}
@@ -278,14 +288,10 @@ export default function Navbar() {
                     {activeDropdown === link.name && (
                       <div className="mx-2 mb-3 bg-gradient-to-r from-pink-50/80 to-rose-50/80 rounded-xl border border-pink-100 overflow-hidden">
                         {link.dropdown.map((item) => (
-                          <a
+                          <button
                             key={item.name}
-                            href={item.href}
-                            className="flex items-center justify-between p-4 hover:bg-white/80 transition-colors group"
-                            onClick={() => {
-                              setIsMenuOpen(false);
-                              setActiveDropdown(null);
-                            }}
+                            onClick={() => scrollToSection(item.href)}
+                            className="flex items-center justify-between p-4 hover:bg-white/80 transition-colors group w-full text-left"
                           >
                             <div className="flex items-center">
                               <span className="mr-3 text-pink-500 bg-pink-200/50 p-2 rounded-lg">
@@ -303,19 +309,18 @@ export default function Navbar() {
                             <div className="text-pink-600 font-semibold text-sm">
                               {item.price}
                             </div>
-                          </a>
+                          </button>
                         ))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <a
-                    href={link.href}
-                    className="block px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all"
-                    onClick={() => setIsMenuOpen(false)}
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="block px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all w-full text-left"
                   >
                     {link.name}
-                  </a>
+                  </button>
                 )}
               </div>
             ))}

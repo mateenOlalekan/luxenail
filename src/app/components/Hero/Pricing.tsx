@@ -60,7 +60,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 3,
       name: "Spa Package",
-      price: "₦100",
+      price: "₦ 100,000",
       originalPrice: "₦ 120,000",
       description:
         "Relaxing spa experience with paraffin treatment and simple nail art.",
@@ -125,7 +125,7 @@ export default function EnhancedPackagesSection() {
   ];
 
   return (
-    <section className="py-10 bg-gradient-to-b from-pink-50 via-white to-rose-50">
+    <section id="packages" className="py-10 bg-gradient-to-b from-pink-50 via-white to-rose-50">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -152,14 +152,14 @@ export default function EnhancedPackagesSection() {
           {packages.map((pkg) => (
             <div
               key={pkg.id}
-              className={`relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ₦{
+              className={`relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${
                 pkg.popular
                   ? "border-pink-400 ring-2 ring-pink-200"
                   : pkg.premium
                   ? "border-yellow-400 ring-2 ring-yellow-200"
                   : pkg.seasonal
                   ? "border-green-400 ring-2 ring-green-200"
-                  : "border-gray-100 hover:border-pink-200"
+                  : "border-gray-200 hover:border-pink-200"
               }`}
               onClick={() => setSelectedPackage(pkg)}
             >
@@ -282,8 +282,6 @@ export default function EnhancedPackagesSection() {
                   ))}
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
