@@ -125,7 +125,7 @@ export default function Navbar() {
       } py-3`}>
         <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <a href="/" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center">
               <div className="w-14 h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10 bg-gradient-to-br from-pink-400 via-rose-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-pink-400/40 transition-all duration-500 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -143,13 +143,13 @@ export default function Navbar() {
             
             <div className="flex flex-col">
               <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 bg-clip-text text-transparent tracking-tight">
-                Luxe Nails
+                DaGirl Nails
               </span>
               <span className="text-xs text-gray-500 font-light tracking-wide uppercase">
                 Premium Salon & Spa
               </span>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
@@ -177,7 +177,7 @@ export default function Navbar() {
                       >
                         <div className="p-2">
                           {link.dropdown.map((item, index) => (
-                            <Link
+                            <a
                               key={item.name}
                               href={item.href}
                               className="flex items-center justify-between p-4 text-sm rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 group/item"
@@ -199,14 +199,14 @@ export default function Navbar() {
                               <div className="text-pink-600 font-semibold text-xs">
                                 {item.price}
                               </div>
-                            </Link>
+                            </a>
                           ))}
                         </div>
                       </div>
                     )}
                   </>
                 ) : (
-                  <Link
+                  <a
                     href={link.href}
                     className={`px-5 py-3 rounded-xl text-sm font-medium transition-all relative overflow-hidden group ${
                       isScrolled ? 'text-gray-700' : 'text-gray-800'
@@ -214,7 +214,7 @@ export default function Navbar() {
                   >
                     <span className="relative z-10">{link.name}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-100/50 to-pink-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </Link>
+                  </a>
                 )}
               </div>
             ))}
@@ -279,7 +279,7 @@ export default function Navbar() {
                     {activeDropdown === link.name && (
                       <div className="mx-2 mb-3 bg-gradient-to-r from-pink-50/80 to-rose-50/80 rounded-xl border border-pink-100 overflow-hidden">
                         {link.dropdown.map((item) => (
-                          <Link
+                          <a
                             key={item.name}
                             href={item.href}
                             className="flex items-center justify-between p-4 hover:bg-white/80 transition-colors group"
@@ -304,19 +304,19 @@ export default function Navbar() {
                             <div className="text-pink-600 font-semibold text-sm">
                               {item.price}
                             </div>
-                          </Link>
+                          </a>
                         ))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <Link
+                  <a
                     href={link.href}
                     className="block px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 )}
               </div>
             ))}

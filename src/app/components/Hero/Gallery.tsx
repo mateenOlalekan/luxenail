@@ -62,7 +62,7 @@ const BeautyGallery = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 py-16 px-4">
+    <div id="gallery" className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 py-16 px-4">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         
         {/* Header Section */}

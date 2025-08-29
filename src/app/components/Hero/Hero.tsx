@@ -54,7 +54,7 @@ const PremiumHero = () => {
       title: 'Luxury Manicures',
       description: 'Experience our signature manicure with premium products and hand massage',
       image: Img01,
-      price: 'From $45',
+      price: 'From # 45,000',
       duration: '60 min',
       popular: true
     },
@@ -62,7 +62,7 @@ const PremiumHero = () => {
       title: 'Signature Pedicures',
       description: 'Relaxing foot treatment with massage, scrub and paraffin wax',
       image: Img02,
-      price: 'From $65',
+      price: 'From # 65,000',
       duration: '90 min',
       popular: false
     },
@@ -70,7 +70,7 @@ const PremiumHero = () => {
       title: 'Nail Art Design',
       description: 'Custom artistic nail designs created by our master artists',
       image: Img03,
-      price: 'From $25',
+      price: 'From # 50,000',
       duration: '45 min',
       popular: true
     }
@@ -84,7 +84,7 @@ const PremiumHero = () => {
   ];
 
   return (
-    <section className="relative h-fit   overflow-hidden py-14">
+    <section id="hero" className="relative h-fit   overflow-hidden py-14">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50/80"></div>

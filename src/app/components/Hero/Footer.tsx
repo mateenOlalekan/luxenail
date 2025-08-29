@@ -18,15 +18,9 @@ const PremiumFooter = () => {
       { name: 'About Us', href: '/about' },
       { name: 'Our Team', href: '/team' },
       { name: 'Testimonials', href: '/testimonials' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Blog', href: '/blog' },
     ],
     support: [
-      { name: 'FAQ', href: '/faq' },
       { name: 'Contact Us', href: '/contact' },
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms of Service', href: '/terms' },
-      { name: 'Cancellation Policy', href: '/cancellation' },
     ]
   };
 
@@ -124,7 +118,7 @@ const PremiumFooter = () => {
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-pink-500 mr-3" />
                 <a href="tel:+15551234567" className="text-gray-300 hover:text-pink-400 transition-colors text-sm">
-                  (555) 123-4567
+                  09135661234
                 </a>
               </div>
               <div className="flex items-center">

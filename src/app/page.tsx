@@ -10,8 +10,9 @@ export default function Home(){
     <>
     <Navbar/>
     <Hero/>
-    <WhyChooseUs/>
     <Gallery/>
+    <WhyChooseUs/>
+    
     <Pricing/>
     <Testominal/>
     <Footer/>

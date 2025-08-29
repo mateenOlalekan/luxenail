@@ -33,7 +33,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 1,
       name: "Classic Mani & Pedi",
-      price: "# 45,000",
+      price: "₦ 45,000",
       description:
         "Perfect for everyday nail care with regular polish and cuticle treatment.",
       services: [
@@ -47,7 +47,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 2,
       name: "Gel Polish Special",
-      price: "# 70,000",
+      price: "₦70",
       description: "Long-lasting gel polish with relaxing hand massage.",
       services: [
         "Manicure & pedicure",
@@ -60,8 +60,8 @@ export default function EnhancedPackagesSection() {
     {
       id: 3,
       name: "Spa Package",
-      price: "# 100,000",
-      originalPrice: "#120",
+      price: "₦100",
+      originalPrice: "₦ 120,000",
       description:
         "Relaxing spa experience with paraffin treatment and simple nail art.",
       services: [
@@ -77,7 +77,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 4,
       name: "Luxury Experience",
-      price: "# 150,000",
+      price: "₦ 150,000",
       description: "Complete luxury treatment with extensions and custom nail art.",
       services: [
         "Full spa treatment",
@@ -93,7 +93,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 5,
       name: "Bridal Elegance",
-      price: "# 200,000",
+      price: "₦ 200,000",
       description:
         "Designed for brides and special occasions with exquisite details.",
       services: [
@@ -110,7 +110,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 6,
       name: "Seasonal Glow",
-      price: "# 85,000",
+      price: "₦ 85,000",
       description:
         "Celebrate the season with themed nail art and relaxing treatments.",
       services: [
@@ -152,7 +152,7 @@ export default function EnhancedPackagesSection() {
           {packages.map((pkg) => (
             <div
               key={pkg.id}
-              className={`relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer #{
+              className={`relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ₦{
                 pkg.popular
                   ? "border-pink-400 ring-2 ring-pink-200"
                   : pkg.premium
