@@ -80,8 +80,7 @@ const BeautyGallery = () => {
 
           <p className="text-lg text-gray-600 leading-relaxed">
             Explore our collection of stunning nail designs, from timeless classics 
-            to bold seasonal trends.<br /> Each set is crafted by our expert technicians 
-            with premium products to bring your style to life.
+            to bold seasonal trends.
           </p>
         </div>
 
