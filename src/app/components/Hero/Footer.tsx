@@ -47,7 +47,7 @@ const PremiumFooter = () => {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-serif font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  Luxe Nails
+                  DaNail Girl
                 </span>
                 <span className="text-xs text-gray-400 font-light">Premium Salon & Spa</span>
               </div>

@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
           
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-              Why Choose <span className="text-gray-900">Luxe Nails?</span>
+              Why Choose <span className="text-gray-900">Danail Girl?</span>
             </span>
             <br />
             

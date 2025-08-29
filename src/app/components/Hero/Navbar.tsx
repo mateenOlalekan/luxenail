@@ -56,35 +56,35 @@ export default function Navbar() {
       href: '/services/manicures', 
       icon: <Sparkles size={16} />,
       desc: 'Premium nail care & polish',
-      price: 'From $45'
+      price: 'From # 45,000'
     },
     { 
       name: 'Signature Pedicures', 
       href: '/services/pedicures', 
       icon: <Heart size={16} />,
       desc: 'Relaxing foot treatments',
-      price: 'From $65'
+      price: 'From # 65,000'
     },
     { 
       name: 'Nail Art Design', 
       href: '/services/nail-art', 
       icon: <Palette size={16} />,
       desc: 'Custom artistic designs',
-      price: 'From $25'
+      price: 'From # 25,000'
     },
     { 
       name: 'Gel Extensions', 
       href: '/services/gel-extensions', 
       icon: <Crown size={16} />,
       desc: 'Length & strength enhancement',
-      price: 'From $85'
+      price: 'From # 85,000'
     },
     { 
       name: 'Nail Repair', 
       href: '/services/nail-repair', 
       icon: <Scissors size={16} />,
       desc: 'Professional restoration',
-      price: 'From $35'
+      price: 'From # 35,000'
     },
   ];
 
