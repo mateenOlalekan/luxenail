@@ -72,7 +72,7 @@ const BeautyGallery = () => {
             Nail Art Inspiration
           </p>
 
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-4 flex items-center gap-3">
+          <h2 className="text-3xl sm:text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 flex items-center gap-3">
             <Heart className="w-7 h-7 text-pink-500" />
             Our <span className="text-pink-500">Nail Gallery</span>
             <Star className="w-7 h-7 text-yellow-500" />

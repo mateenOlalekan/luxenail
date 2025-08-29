@@ -134,7 +134,7 @@ export default function Navbar() {
             
             <div className="flex flex-col">
               <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 bg-clip-text text-transparent tracking-tight">
-                Luxe Nails
+                DanailGirl
               </span>
               <span className="text-xs text-gray-500 font-light tracking-wide uppercase">
                 Premium Salon & Spa

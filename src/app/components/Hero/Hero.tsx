@@ -153,10 +153,10 @@ const PremiumHero = () => {
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start my-5">
-              <Link href="/booking" className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 text-white px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-lg flex items-center justify-center">
+              <button className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 text-white px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-lg flex items-center justify-center">
                 <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                 Book Your Session
-              </Link>
+              </button>
               
               <Link href="/services" className="border-2 border-pink-300 bg-white/90 text-pink-700 px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-md flex items-center justify-center">
                 <Palette className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
