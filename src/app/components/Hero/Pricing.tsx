@@ -47,7 +47,7 @@ export default function EnhancedPackagesSection() {
     {
       id: 2,
       name: "Gel Polish Special",
-      price: "₦70",
+      price: "₦ 70,000",
       description: "Long-lasting gel polish with relaxing hand massage.",
       services: [
         "Manicure & pedicure",

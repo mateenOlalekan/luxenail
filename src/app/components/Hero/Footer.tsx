@@ -1,6 +1,6 @@
-// app/components/PremiumFooter.jsx
+
 'use client';
-import Link from 'next/link';
+
 import {   Phone,   Mail,  MapPin,   Clock,   Instagram,   Facebook,   Twitter,  Heart,  Sparkles,  Shield,  Award,  Truck} from 'lucide-react';
 
 const PremiumFooter = () => {
@@ -35,7 +35,7 @@ const PremiumFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-6">
+            <a href="/" className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Sparkles className="w-6 h-6 text-white" fill="currentColor" />
               </div>
@@ -45,7 +45,7 @@ const PremiumFooter = () => {
                 </span>
                 <span className="text-xs text-gray-400 font-light">Premium Salon & Spa</span>
               </div>
-            </Link>
+            </a>
             <p className="text-gray-300 mb-6 text-sm leading-relaxed">
               Experience the ultimate in nail care luxury. Our award-winning salon provides exceptional service using only the finest products in a relaxing, beautiful environment.
             </p>
@@ -70,13 +70,13 @@ const PremiumFooter = () => {
             <ul className="space-y-3">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
-                  <Link 
+                  <a 
                     href={link.href} 
                     className="text-gray-300 hover:text-pink-400 transition-colors text-sm flex items-center"
                   >
                     <Sparkles className="w-3 h-3 mr-2 text-pink-500" />
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -90,13 +90,13 @@ const PremiumFooter = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <Link 
+                  <a
                     href={link.href} 
                     className="text-gray-300 hover:text-pink-400 transition-colors text-sm flex items-center"
                   >
                     <Heart className="w-3 h-3 mr-2 text-pink-500" fill="currentColor" />
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -170,13 +170,13 @@ const PremiumFooter = () => {
           </p>
           <div className="flex space-x-6">
             {footerLinks.support.map((link, index) => (
-              <Link 
+              <a 
                 key={index}
                 href={link.href} 
                 className="text-gray-400 text-sm hover:text-pink-400 transition-colors"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

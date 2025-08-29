@@ -111,9 +111,8 @@ export default function Navbar() {
       dropdown: services
     },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'About Us', href: '/about' },
     { name: 'Packages', href: '/packages' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Testimonial', href: '/testimonial' },
   ];
 
   return (
@@ -125,7 +124,7 @@ export default function Navbar() {
       } py-3`}>
         <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-3 group">
+          <a href="#home" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center">
               <div className="w-14 h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10 bg-gradient-to-br from-pink-400 via-rose-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-pink-400/40 transition-all duration-500 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -179,7 +178,7 @@ export default function Navbar() {
                           {link.dropdown.map((item, index) => (
                             <a
                               key={item.name}
-                              href={item.href}
+                              href={`#${item.href}`}
                               className="flex items-center justify-between p-4 text-sm rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 group/item"
                               onClick={() => setActiveDropdown(null)}
                             >
