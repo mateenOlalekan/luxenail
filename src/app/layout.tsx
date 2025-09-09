@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` bg-white dark:bg-white ${jost.variable} ${oxanium.variable} font-sans antialiased`}>
+      <body className={` bg-white  dark:bg-white ${jost.variable} ${oxanium.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
