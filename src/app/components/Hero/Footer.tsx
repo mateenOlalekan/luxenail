@@ -1,7 +1,7 @@
 
 'use client';
 
-import {   Phone,   Mail,  MapPin,   Clock,   Instagram,   Facebook,   Twitter,  Heart,  Sparkles,  Shield,  Award,  Truck} from 'lucide-react';
+import {   Phone,   Mail,  MapPin,   Clock,   Instagram,   Facebook,   Twitter,  Heart,  Sparkles,Crown} from 'lucide-react';
 
 const PremiumFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -35,17 +35,34 @@ const PremiumFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <a href="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Sparkles className="w-6 h-6 text-white" fill="currentColor" />
+          <a
+            href="/"
+            className="flex items-center space-x-3 group pb-6"
+          >
+            <div className="relative flex items-center justify-center">
+              <div className="w-14 h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10 bg-gradient-to-br from-pink-400 via-rose-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-pink-400/40 transition-all duration-500 group-hover:scale-105 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Sparkles className="w-7 h-7 max-md:w-6 max-md:h-6 max-sm:w-5 max-sm:h-5 text-white drop-shadow-sm" fill="currentColor" />
+                <div className="absolute top-1 right-1 w-1 h-1 bg-white/60 rounded-full animate-pulse"></div>
+                <div className="absolute bottom-2 left-2 w-0.5 h-0.5 bg-white/40 rounded-full animate-ping"></div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-serif font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  DaNail Girl
-                </span>
-                <span className="text-xs text-gray-400 font-light">Premium Salon & Spa</span>
+              
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                <Crown className="w-3 h-3 text-white" fill="currentColor" />
               </div>
-            </a>
+              
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-400/20 to-purple-600/20 blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 bg-clip-text text-transparent tracking-tight">
+                DaGirl Nails
+              </span>
+              <span className="text-xs text-gray-500 font-light tracking-wide uppercase">
+                Premium Salon & Spa
+              </span>
+            </div>
+          </a>
             <p className="text-gray-300 mb-6 text-sm leading-relaxed">
               Experience the ultimate in nail care luxury. Our award-winning salon provides exceptional service using only the finest products in a relaxing, beautiful environment.
             </p>
@@ -140,27 +157,7 @@ const PremiumFooter = () => {
         </div>
       </div>
 
-      {/* Newsletter Section */}
-      <section className="border-t border-b border-gray-800 py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="font-serif text-2xl font-semibold mb-4">Stay Updated with Luxe Nails</h3>
-            <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-              Subscribe to our newsletter for exclusive offers, new services, and beauty tips delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-              />
-              <button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-pink-500/20">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Bottom Footer */}
       <div className="max-w-7xl mx-auto px-4 py-8">

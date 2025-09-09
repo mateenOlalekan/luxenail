@@ -5,12 +5,9 @@ import {
   Phone, 
   Calendar, 
   Sparkles, 
-  Heart, 
   Menu, 
   X, 
-  ChevronDown, 
-  Scissors, 
-  Palette, 
+  ChevronDown,  
   Crown, 
   Clock, 
   MapPin, 
@@ -19,24 +16,14 @@ import {
 } from 'lucide-react';
 import BookingModal from './BookingModal';
 
-interface Service {
-  name: string;
-  href: string;
-  icon: React.ReactNode;
-  desc: string;
-  price: string;
-}
-
 interface NavLink {
   name: string;
   href: string;
-  dropdown?: Service[];
 }
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -55,14 +42,6 @@ export default function Navbar() {
     setIsModalOpen(!isModalOpen);
   };
 
-  const toggleDropdown = (dropdown: string) => {
-    if (activeDropdown === dropdown) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(dropdown);
-    }
-  };
-
   // Function to scroll to a section
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -70,54 +49,11 @@ export default function Navbar() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-    setActiveDropdown(null);
   };
-
-  const services: Service[] = [
-    { 
-      name: 'Luxury Manicures', 
-      href: 'services', 
-      icon: <Sparkles size={16} />,
-      desc: 'Premium nail care & polish',
-      price: 'From ₦ 45,000'
-    },
-    { 
-      name: 'Signature Pedicures', 
-      href: 'services', 
-      icon: <Heart size={16} />,
-      desc: 'Relaxing foot treatments',
-      price: 'From ₦ 65,000'
-    },
-    { 
-      name: 'Nail Art Design', 
-      href: 'services', 
-      icon: <Palette size={16} />,
-      desc: 'Custom artistic designs',
-      price: 'From ₦ 25,000'
-    },
-    { 
-      name: 'Gel Extensions', 
-      href: 'services', 
-      icon: <Crown size={16} />,
-      desc: 'Length & strength enhancement',
-      price: 'From ₦ 85,000'
-    },
-    { 
-      name: 'Nail Repair', 
-      href: 'services', 
-      icon: <Scissors size={16} />,
-      desc: 'Professional restoration',
-      price: 'From ₦ 35,000'
-    },
-  ];
 
   const navLinks: NavLink[] = [
     { name: 'Home', href: 'home' },
-    { 
-      name: 'Services', 
-      href: 'services',
-      dropdown: services
-    },
+    { name: 'Services', href: 'services' },
     { name: 'Gallery', href: 'gallery' },
     { name: 'Packages', href: 'packages' },
     { name: 'Testimonial', href: 'testimonial' },
@@ -125,12 +61,13 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      {/* Fixed positioning added for proper navbar behavior */}
+      <nav className={` w-full z-50 transition-all duration-500 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
           : 'bg-gradient-to-b from-white/98 to-white/95 backdrop-blur-sm'
       } py-3`}>
-        <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('home')} 
@@ -165,66 +102,15 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group">
-                {link.dropdown ? (
-                  <>
-                    <button
-                      onMouseEnter={() => setActiveDropdown(link.name)}
-                      onMouseLeave={() => setActiveDropdown(null)}
-                      className={`px-5 py-3 rounded-xl text-sm font-medium transition-all flex items-center relative overflow-hidden group ${
-                        isScrolled ? 'text-gray-700' : 'text-gray-800'
-                      } hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50`}
-                    >
-                      <span className="relative z-10">{link.name}</span>
-                      <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180 relative z-10" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-100/50 to-pink-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </button>
-                    
-                    {(activeDropdown === link.name) && (
-                      <div 
-                        className="absolute left-0 mt-2 w-80 rounded-2xl shadow-2xl bg-white ring-1 ring-pink-100 border border-pink-50 overflow-hidden animate-fadeInUp"
-                        onMouseEnter={() => setActiveDropdown(link.name)}
-                        onMouseLeave={() => setActiveDropdown(null)}
-                      >
-                        <div className="p-2">
-                          {link.dropdown.map((item, index) => (
-                            <button
-                              key={item.name}
-                              onClick={() => scrollToSection(item.href)}
-                              className="flex items-center justify-between p-4 text-sm rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 group/item w-full text-left"
-                            >
-                              <div className="flex items-center">
-                                <span className="mr-4 text-pink-500 bg-pink-100 p-2 rounded-lg group-hover/item:bg-pink-200 transition-colors">
-                                  {item.icon}
-                                </span>
-                                <div>
-                                  <div className="font-medium text-gray-800 group-hover/item:text-pink-600">
-                                    {item.name}
-                                  </div>
-                                  <div className="text-xs text-gray-500 mt-0.5">
-                                    {item.desc}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="text-pink-600 font-semibold text-xs">
-                                {item.price}
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className={`px-5 py-3 rounded-xl text-sm font-medium transition-all relative overflow-hidden group ${
-                      isScrolled ? 'text-gray-700' : 'text-gray-800'
-                    } hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50`}
-                  >
-                    <span className="relative z-10">{link.name}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-100/50 to-pink-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-                )}
+                <button
+                  onClick={() => scrollToSection(link.href)}
+                  className={`px-5 py-3 rounded-xl text-sm font-medium transition-all relative overflow-hidden group ${
+                    isScrolled ? 'text-gray-700' : 'text-gray-800'
+                  } hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50`}
+                >
+                  <span className="relative z-10">{link.name}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-100/50 to-pink-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
               </div>
             ))}
           </div>
@@ -267,61 +153,18 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Updated positioning for fixed navbar */}
       {isMenuOpen && (
-        <div className="lg:hidden fixed top-20 inset-x-0 z-50 bg-white/95 backdrop-blur-md shadow-2xl animate-slideIn border-b border-pink-100 max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden fixed top-[80px] inset-x-0 z-40 bg-white/95 backdrop-blur-md shadow-2xl animate-slideIn border-b border-pink-100 max-h-[80vh] overflow-y-auto">
           <div className="px-4 pt-6 pb-8 space-y-1">
             {navLinks.map((link) => (
               <div key={link.name}>
-                {link.dropdown ? (
-                  <>
-                    <button
-                      onClick={() => toggleDropdown(link.name)}
-                      className="flex w-full items-center justify-between px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all"
-                    >
-                      {link.name}
-                      <span className={`transform transition-transform duration-300 ${
-                        activeDropdown === link.name ? 'rotate-180 text-pink-600' : ''
-                      }`}>▼</span>
-                    </button>
-                    
-                    {activeDropdown === link.name && (
-                      <div className="mx-2 mb-3 bg-gradient-to-r from-pink-50/80 to-rose-50/80 rounded-xl border border-pink-100 overflow-hidden">
-                        {link.dropdown.map((item) => (
-                          <button
-                            key={item.name}
-                            onClick={() => scrollToSection(item.href)}
-                            className="flex items-center justify-between p-4 hover:bg-white/80 transition-colors group w-full text-left"
-                          >
-                            <div className="flex items-center">
-                              <span className="mr-3 text-pink-500 bg-pink-200/50 p-2 rounded-lg">
-                                {item.icon}
-                              </span>
-                              <div>
-                                <div className="font-medium text-gray-800 group-hover:text-pink-600">
-                                  {item.name}
-                                </div>
-                                <div className="text-xs text-gray-500 mt-0.5">
-                                  {item.desc}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-pink-600 font-semibold text-sm">
-                              {item.price}
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="block px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all w-full text-left"
-                  >
-                    {link.name}
-                  </button>
-                )}
+                <button
+                  onClick={() => scrollToSection(link.href)}
+                  className="block px-4 py-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-pink-600 transition-all w-full text-left"
+                >
+                  {link.name}
+                </button>
               </div>
             ))}
             
@@ -392,8 +235,7 @@ export default function Navbar() {
       {/* Booking Modal */}
       <BookingModal isOpen={isModalOpen} onClose={toggleModal} />
       
-      {/* Spacer to prevent content overlap */}
-      <div className="h-20"></div>
+
     </>
   );
 }

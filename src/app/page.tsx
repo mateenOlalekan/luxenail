@@ -12,7 +12,6 @@ export default function Home(){
     <Hero/>
     <Gallery/>
     <WhyChooseUs/>
-    
     <Pricing/>
     <Testominal/>
     <Footer/>

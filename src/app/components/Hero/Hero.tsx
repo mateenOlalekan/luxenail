@@ -84,7 +84,7 @@ const PremiumHero = () => {
   ];
 
   return (
-    <section id="home" className="relative h-fit   overflow-hidden py-14">
+    <section id="home" className="relative min-h-screen w-full    overflow-hidden py-14">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50/80"></div>
@@ -107,8 +107,8 @@ const PremiumHero = () => {
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto px-4 relative z-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-40">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Content Section */}
           <div className={`text-center lg:text-left transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -191,10 +191,7 @@ const PremiumHero = () => {
                         </div>
                       </div>
                       <p className="text-sm sm:text-base text-gray-600 mb-3 leading-relaxed">{service.description}</p>
-                      <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex items-center text-pink-600 font-medium text-sm hover:text-pink-700">
-                        Learn More
-                        <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 ml-1 rotate-[-90deg]" />
-                      </Link>
+
                     </div>
                   </div>
                 </div>
